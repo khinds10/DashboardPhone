@@ -37,12 +37,17 @@ public class NotificationService extends NotificationListenerService {
 		Log.i("Ticker", ticker);
 		Log.i("Title", title);
 		Log.i("Text", text);
+		
+		// publish over to kevinhinds.net
+		PublishService ps = new PublishService();
+		ps.pushNotification(pack, ticker, title, text);
 
 		Intent msgrcv = new Intent("Msg");
 		msgrcv.putExtra("package", pack);
 		msgrcv.putExtra("ticker", ticker);
 		msgrcv.putExtra("title", title);
 		msgrcv.putExtra("text", text);
+		
 		if (id != null) {
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			id.compress(Bitmap.CompressFormat.PNG, 100, stream);

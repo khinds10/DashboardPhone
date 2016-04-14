@@ -22,6 +22,11 @@ public class ServiceReceiver extends BroadcastReceiver {
 				msgrcv.putExtra("ticker", incomingNumber);
 				msgrcv.putExtra("title", incomingNumber);
 				msgrcv.putExtra("text", "");
+				
+				// publish over to kevinhinds.net
+				PublishService ps = new PublishService();
+				ps.pushNotification("Call:", incomingNumber, incomingNumber, "");
+				
 				LocalBroadcastManager.getInstance(context).sendBroadcast(msgrcv);
 			}
 		}, PhoneStateListener.LISTEN_CALL_STATE);

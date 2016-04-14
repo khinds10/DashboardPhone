@@ -18,7 +18,6 @@ public class IncomingSms extends BroadcastReceiver {
 
 		// Retrieves a map of extended data from the intent.
 		final Bundle bundle = intent.getExtras();
-
 		try {
 			if (bundle != null) {
 				final Object[] pdusObj = (Object[]) bundle.get("pdus");
@@ -37,6 +36,11 @@ public class IncomingSms extends BroadcastReceiver {
 					msgrcv.putExtra("ticker", senderNum);
 					msgrcv.putExtra("title", senderNum);
 					msgrcv.putExtra("text", message);
+
+					// publish over to kevinhinds.net
+					PublishService ps = new PublishService();
+					ps.pushNotification("SMS:", senderNum, senderNum, message);
+
 					LocalBroadcastManager.getInstance(context).sendBroadcast(msgrcv);
 				}
 			}

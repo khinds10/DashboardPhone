@@ -3,5 +3,6 @@
 
     <string name="app_name">Dashboard Phone</string>
     <string name="action_settings">Notification Settings</string>
+    <string name="remote_dashboard_host">dashboard.kevinhinds.net</string>
 
 </resources>
